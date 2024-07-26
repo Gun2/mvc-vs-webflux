@@ -1,2 +1,6 @@
 rootProject.name = 'mvc-vs-webflux'
 
+include(":app:multi-thread-api-app")
+include(":app:virtual-multi-thread-api-app")
+include(":common:any-common")
+include(":common:multi-thread-common")
