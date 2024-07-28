@@ -1,6 +1,8 @@
 package com.github.gun2.multithreadcommon.board;
 
 import com.github.gun2.anycommon.board.BoardDto;
+import com.github.gun2.boardjpacommon.board.BoardJpaEntity;
+import com.github.gun2.boardjpacommon.board.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -8,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 
-import static com.github.gun2.multithreadcommon.board.DtoJpaEntityModelMapper.toDto;
+import static com.github.gun2.anycommon.board.DtoJpaEntityModelMapper.toDto;
 
 @Service
 @Slf4j

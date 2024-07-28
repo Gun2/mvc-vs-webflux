@@ -2,5 +2,9 @@ rootProject.name = 'mvc-vs-webflux'
 
 include(":app:multi-thread-api-app")
 include(":app:virtual-multi-thread-api-app")
-include(":common:any-common")
+include(":app:reactor-api-block-db-app")
+include(":app:reactor-api-non-block-db-app")
+include(":common:board-dto-model")
+include(":common:board-jpa-common")
 include(":common:multi-thread-common")
+include(":common:reactor-common")

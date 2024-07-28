@@ -1,13 +1,12 @@
 
 dependencies {
-    api 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    api 'org.springframework.boot:spring-boot-starter-validation'
 
+    compileOnly project(":common:board-jpa-common")
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    api project(":common:board-dto-model")
-    api project(":common:board-jpa-common")
 }
 
 tasks.named('test') {
