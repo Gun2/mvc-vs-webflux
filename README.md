@@ -3,9 +3,13 @@
 
 # 비교 대상
 - 멀티 스레드 방식의 REST API
+> multi-thread-api-app <br/>http://localhost:8081
 - 가상 스레드를 사용한 멀티 스레드 방식의 REST API
+> virtual-multi-thread-api-app <br/>http://localhost:8082
 - 논블록킹 방식으로 구현된 Rest API (블록킹 DB)
+> reactor-api-block-db-app <br/>http://localhost:8083
 - 논블록킹 방식으로 구현된 Rest API (논 블록킹 DB)
+> reactor-api-non-block-db-app <br/>http://localhost:8084
 
 
 # 테스트 환경
