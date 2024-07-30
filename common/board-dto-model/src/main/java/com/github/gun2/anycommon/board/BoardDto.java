@@ -19,6 +19,8 @@ public class BoardDto {
     @Getter
     @Setter
     @ToString
+    @Builder
+    @AllArgsConstructor
     @NoArgsConstructor
     public static class BoardRequest {
         @NotBlank
