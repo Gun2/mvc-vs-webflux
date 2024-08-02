@@ -67,9 +67,9 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
         ScheduledExecutorService schedule = Executors.newSingleThreadScheduledExecutor();
         schedule.scheduleAtFixedRate(() -> {
             recordMetric();
-            if (phase > currentPhase.get()){
+            if (phase > currentPhase.get()) {
                 nextPhase();
-            }else {
+            } else {
                 try {
                     FileUtil.saveObjectToFile(outputPath, this.history);
                 } catch (IOException e) {
@@ -78,6 +78,7 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
                 schedule.shutdown();
             }
         }, durationMsPerPhase, durationMsPerPhase, TimeUnit.MILLISECONDS);
+
         startTime = System.currentTimeMillis();
         log.info("start request");
         increaseRequest(initClient);
@@ -96,6 +97,7 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
      * 측정 정보 기록
      */
     public void recordMetric(){
+        this.metric.calcAvg();
         this.history.put(System.currentTimeMillis() - startTime, new Metric(this.metric));
         this.metric.init();
         log.info("record metric");
@@ -107,7 +109,6 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
      */
     public void increaseRequest(int count){
         for (int i = 0; i < count; i++) {
-            StopWatch stopWatch = new StopWatch();
             startRequestAndRecordLoop();
         }
     }
