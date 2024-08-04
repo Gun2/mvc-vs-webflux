@@ -12,14 +12,8 @@ public class BoardCreateIncreasingClientMeasurementService extends TemplateIncre
     private final BoardApiService boardApiService;
     private final BoardDto.BoardRequest sample = getSample();
 
-    public BoardCreateIncreasingClientMeasurementService(BoardApiService boardApiService) {
-        super(TemplateIncreasingClientMeasurementConfig.builder()
-                .phase(10)
-                .initClient(100)
-                .increasingClient(100)
-                .outputPath("board_create_output.json")
-                .durationMsPerPhase(5000)
-                .build());
+    public BoardCreateIncreasingClientMeasurementService(BoardApiService boardApiService, TemplateIncreasingClientMeasurementConfig config) {
+        super(config);
         this.boardApiService = boardApiService;
     }
 

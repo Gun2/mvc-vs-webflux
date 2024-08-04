@@ -11,16 +11,12 @@ import reactor.core.publisher.Mono;
 public class BoardReadIncreasingClientMeasurementService extends TemplateIncreasingClientMeasurementService {
     private final BoardApiService boardApiService;
 
-    public BoardReadIncreasingClientMeasurementService(BoardApiService boardApiService) {
-        super(TemplateIncreasingClientMeasurementConfig.builder()
-                .phase(10)
-                .initClient(100)
-                .increasingClient(100)
-                .outputPath("board_read_output.json")
-                .durationMsPerPhase(5000)
-                .build());
+    public BoardReadIncreasingClientMeasurementService(BoardApiService boardApiService, TemplateIncreasingClientMeasurementConfig config) {
+        super(config);
         this.boardApiService = boardApiService;
     }
+
+
 
     @Override
     public Mono<BoardDto> request(){
