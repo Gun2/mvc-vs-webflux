@@ -3,11 +3,13 @@ package com.github.gun2.measurementapp.service;
 import com.github.gun2.measurementapp.dto.Metric;
 import com.github.gun2.measurementapp.dto.StopWatch;
 import com.github.gun2.measurementapp.util.FileUtil;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -38,8 +40,11 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
     private final AtomicLong currentPhase = new AtomicLong(1);
     private final Metric metric = new Metric();
     private long startTime;
+    @Getter
     public final Map<Long, Metric> history = new HashMap<>();
     private final String outputPath;
+    private final CountDownLatch countDownLatch = new CountDownLatch(1);
+    private boolean start;
 
     public TemplateIncreasingClientMeasurementService(TemplateIncreasingClientMeasurementConfig config) {
         this.initClient = config.getInitClient();
@@ -50,6 +55,10 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
     }
 
     public void start(){
+        if (this.start){
+            throw new IllegalStateException("Already started");
+        }
+        this.start = true;
         log.info("start init");
         ready();
         log.info("completed init");
@@ -76,6 +85,7 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
                     throw new RuntimeException(e);
                 }
                 schedule.shutdown();
+                countDownLatch.countDown();
             }
         }, durationMsPerPhase, durationMsPerPhase, TimeUnit.MILLISECONDS);
 
@@ -124,5 +134,16 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
             this.metric.record(requestTime);
             startRequestAndRecordLoop();
         });
+    }
+
+    /**
+     * 작업이 수행될 때 까지 대기
+     * @throws InterruptedException
+     */
+    @Override
+    public void await() throws InterruptedException {
+        if (this.start){
+            this.countDownLatch.await();
+        }
     }
 }

@@ -16,4 +16,6 @@ public interface IncreasingClientMeasurementService {
      */
 
     <T> Mono<T> request();
+
+    void await() throws InterruptedException;
 }
