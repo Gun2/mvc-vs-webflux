@@ -9,6 +9,10 @@ import lombok.*;
 @AllArgsConstructor
 public class TemplateIncreasingClientMeasurementConfig {
     /**
+     * 대상 서버 url
+     */
+    private String targetUrl;
+    /**
      * 초기 요청 클라이언트 수
      */
     private int initClient = 1;

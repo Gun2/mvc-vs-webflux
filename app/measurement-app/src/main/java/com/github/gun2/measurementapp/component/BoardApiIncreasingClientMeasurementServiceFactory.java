@@ -24,7 +24,11 @@ public class BoardApiIncreasingClientMeasurementServiceFactory {
      * @return
      */
     public BoardReadIncreasingClientMeasurementService createReadApiMeasurementService(){
-        return new BoardReadIncreasingClientMeasurementService(this.boardApiService, convert(appInfo.getReadMeasurementConfig()));
+        return createReadApiMeasurementService(convert(appInfo.getReadMeasurementConfig()));
+    }
+
+    public BoardReadIncreasingClientMeasurementService createReadApiMeasurementService(TemplateIncreasingClientMeasurementConfig config){
+        return new BoardReadIncreasingClientMeasurementService(this.boardApiService, config);
     }
 
     /**

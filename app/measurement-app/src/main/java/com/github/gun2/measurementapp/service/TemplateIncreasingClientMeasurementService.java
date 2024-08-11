@@ -20,7 +20,11 @@ import java.util.concurrent.atomic.AtomicLong;
  * 클라이언트 수는 매 단계(phase)마다 증가되며 단계별로 수행된 요청 정보를 기록
  */
 @Slf4j
-public abstract class TemplateIncreasingClientMeasurementService implements IncreasingClientMeasurementService{
+public abstract class TemplateIncreasingClientMeasurementService implements IncreasingClientMeasurementService {
+    /**
+     * 대상 url
+     */
+    protected final String targetUrl;
     /**
      * 초기 요청 클라이언트 수
      */
@@ -47,6 +51,7 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
     private boolean start;
 
     public TemplateIncreasingClientMeasurementService(TemplateIncreasingClientMeasurementConfig config) {
+        this.targetUrl = config.getTargetUrl();
         this.initClient = config.getInitClient();
         this.increasingClient = config.getIncreasingClient();
         this.durationMsPerPhase = config.getDurationMsPerPhase();

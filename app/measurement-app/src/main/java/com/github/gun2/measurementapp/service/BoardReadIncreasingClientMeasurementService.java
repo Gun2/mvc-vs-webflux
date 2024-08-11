@@ -20,7 +20,7 @@ public class BoardReadIncreasingClientMeasurementService extends TemplateIncreas
 
     @Override
     public Mono<BoardDto> request(){
-        return boardApiService.readById(1);
+        return boardApiService.readById(super.targetUrl,1);
     }
 
 
@@ -40,7 +40,7 @@ public class BoardReadIncreasingClientMeasurementService extends TemplateIncreas
 
     @Override
     public void ready() {
-        boardApiService.create(getSample()).block();
+        boardApiService.create(super.targetUrl, getSample()).block();
         warmUp();
     }
 }

@@ -19,7 +19,7 @@ public class BoardCreateIncreasingClientMeasurementService extends TemplateIncre
 
     @Override
     public Mono<BoardDto> request(){
-        return boardApiService.create(sample);
+        return boardApiService.create(super.targetUrl, sample);
     }
 
 
