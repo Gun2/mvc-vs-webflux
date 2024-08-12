@@ -36,7 +36,11 @@ public class BoardApiIncreasingClientMeasurementServiceFactory {
      * @return
      */
     public BoardCreateIncreasingClientMeasurementService createCreateApiMeasurementService(){
-        return new BoardCreateIncreasingClientMeasurementService(this.boardApiService, convert(appInfo.getCreateMeasurementConfig()));
+        return createCreateApiMeasurementService(convert(appInfo.getCreateMeasurementConfig()));
+    }
+
+    public BoardCreateIncreasingClientMeasurementService createCreateApiMeasurementService(TemplateIncreasingClientMeasurementConfig config){
+        return new BoardCreateIncreasingClientMeasurementService(this.boardApiService, config);
     }
 
     public TemplateIncreasingClientMeasurementConfig convert(AppInfo.MeasurementConfig measurementConfig){
