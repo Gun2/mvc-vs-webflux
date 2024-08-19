@@ -48,7 +48,7 @@ public class ApiMeasureShell {
             @ShellOption(
                     value = {"o", "outputPath"},
                     help = "측정 결과 저장 경로",
-                    defaultValue = "create_api_measure_output.json"
+                    defaultValue = "read_api_measure_output.json"
             ) String outputPath
             ) throws InterruptedException, JsonProcessingException {
         BoardReadIncreasingClientMeasurementService readApiMeasurementService = boardApiIncreasingClientMeasurementServiceFactory.createReadApiMeasurementService(TemplateIncreasingClientMeasurementConfig.builder()
