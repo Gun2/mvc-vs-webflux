@@ -1,6 +1,7 @@
 package com.github.gun2.board;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 
 import java.time.Instant;
 
@@ -10,6 +11,7 @@ import java.time.Instant;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board {
 
+    @Id
     private Long id;
 
     private String title;
