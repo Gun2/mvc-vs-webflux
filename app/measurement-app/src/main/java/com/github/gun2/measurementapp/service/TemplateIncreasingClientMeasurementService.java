@@ -7,8 +7,8 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -45,7 +45,7 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
     private final Metric metric = new Metric();
     private long startTime;
     @Getter
-    public final Map<Long, Metric> history = new HashMap<>();
+    public final List<Metric> history = new ArrayList<>();
     private final String outputPath;
     private final CountDownLatch countDownLatch = new CountDownLatch(1);
     private boolean start;
@@ -113,7 +113,9 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
      */
     public void recordMetric(){
         this.metric.calcAvg();
-        this.history.put(System.currentTimeMillis() - startTime, new Metric(this.metric));
+        Metric historyMetric = new Metric(this.metric, System.currentTimeMillis() - startTime);
+        this.history.add(historyMetric);
+        log.info("record metric : {}", historyMetric);
         this.metric.init();
         log.info("record metric");
     }

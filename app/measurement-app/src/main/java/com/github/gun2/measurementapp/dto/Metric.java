@@ -27,14 +27,17 @@ public class Metric {
      */
     private Long sum = 0L;
 
-    public AtomicLong recordCount = new AtomicLong();
+    private AtomicLong recordCount = new AtomicLong();
 
-    public Metric(Metric metric) {
+    private long time;
+
+    public Metric(Metric metric, long time) {
         this.min = metric.getMin();
         this.max = metric.getMax();
         this.avg = metric.getAvg();
         this.sum = metric.getSum();
         this.recordCount = new AtomicLong(metric.getRecordCount().get());
+        this.time = time;
     }
 
     public void record(Long result){
