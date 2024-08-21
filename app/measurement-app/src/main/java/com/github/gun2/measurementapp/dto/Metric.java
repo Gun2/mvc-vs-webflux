@@ -3,12 +3,14 @@ package com.github.gun2.measurementapp.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.concurrent.atomic.AtomicLong;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class Metric {
     /**
      * 최소 수치

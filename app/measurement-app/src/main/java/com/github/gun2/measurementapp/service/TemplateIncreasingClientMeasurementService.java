@@ -64,14 +64,12 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
             throw new IllegalStateException("Already started");
         }
         this.start = true;
-        log.info("start init");
+        log.info("start initialization");
         ready();
-        log.info("completed init");
+        log.info("init is completed");
 
-        log.info("start fire");
+        log.info("start firing");
         fire();
-        log.info("completed fire");
-
     }
 
     /**
@@ -91,6 +89,8 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
                 }
                 schedule.shutdown();
                 countDownLatch.countDown();
+                log.info("firing is complete");
+                this.start = false;
             }
         }, durationMsPerPhase, durationMsPerPhase, TimeUnit.MILLISECONDS);
 
@@ -105,7 +105,7 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
     public void nextPhase(){
         increaseRequest(this.increasingClient);
         long next = currentPhase.incrementAndGet();
-        log.info("go to {} phase", next);
+        log.info("phase({}/{})", next, this.phase);
     }
 
     /**
@@ -117,7 +117,6 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
         this.history.add(historyMetric);
         log.info("record metric : {}", historyMetric);
         this.metric.init();
-        log.info("record metric");
     }
 
     /**
@@ -139,7 +138,9 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
         this.request().subscribe(boardDto -> {
             long requestTime = stopWatch.stop();
             this.metric.record(requestTime);
-            startRequestAndRecordLoop();
+            if (this.start){
+                startRequestAndRecordLoop();
+            }
         });
     }
 
