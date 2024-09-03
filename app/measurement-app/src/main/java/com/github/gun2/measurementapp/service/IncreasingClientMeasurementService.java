@@ -1,7 +1,6 @@
 package com.github.gun2.measurementapp.service;
 
-import com.github.gun2.measurementapp.dto.StopWatch;
-import reactor.core.publisher.Mono;
+import java.util.concurrent.Future;
 
 public interface IncreasingClientMeasurementService {
     /**
@@ -15,7 +14,7 @@ public interface IncreasingClientMeasurementService {
      * @param <T>
      */
 
-    <T> Mono<T> request();
+    <T> Future<T> request(Runnable callback);
 
     void await() throws InterruptedException;
 }

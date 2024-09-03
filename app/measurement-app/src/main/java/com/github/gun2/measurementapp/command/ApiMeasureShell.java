@@ -17,7 +17,7 @@ import org.springframework.shell.standard.ShellOption;
 @Slf4j
 public class ApiMeasureShell {
     private final BoardApiIncreasingClientMeasurementServiceFactory boardApiIncreasingClientMeasurementServiceFactory;
-    private final ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @ShellMethod(key = "read", prefix = "-", value = "조회 API 성능 측정")
     public String readApiMeasure(
