@@ -135,9 +135,9 @@ public abstract class TemplateIncreasingClientMeasurementService implements Incr
     public void startRequestAndRecordLoop(){
         final StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        this.request(() -> {
+        this.request((isSucceed) -> {
             long requestTime = stopWatch.stop();
-            this.metric.record(requestTime);
+            this.metric.record(requestTime, isSucceed);
             if (this.start) {
                 startRequestAndRecordLoop();
             }

@@ -1,6 +1,7 @@
 package com.github.gun2.measurementapp.service;
 
 import java.util.concurrent.Future;
+import java.util.function.Consumer;
 
 public interface IncreasingClientMeasurementService {
     /**
@@ -14,7 +15,7 @@ public interface IncreasingClientMeasurementService {
      * @param <T>
      */
 
-    <T> Future<T> request(Runnable callback);
+    <T> Future<T> request(Consumer<Boolean> callback);
 
     void await() throws InterruptedException;
 }

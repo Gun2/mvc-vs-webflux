@@ -29,7 +29,8 @@ public class Metric {
      */
     private Long sum = 0L;
 
-    private AtomicLong recordCount = new AtomicLong();
+    private AtomicLong successCount = new AtomicLong();
+    private AtomicLong failureCount = new AtomicLong();
 
     private long time;
 
@@ -38,11 +39,12 @@ public class Metric {
         this.max = metric.getMax();
         this.avg = metric.getAvg();
         this.sum = metric.getSum();
-        this.recordCount = new AtomicLong(metric.getRecordCount().get());
+        this.successCount = new AtomicLong(metric.getSuccessCount().get());
+        this.failureCount = new AtomicLong(metric.getFailureCount().get());
         this.time = time;
     }
 
-    public void record(Long result){
+    public void record(Long result, boolean success){
         if (min == null || min > result){
             this.min = result;
         }
@@ -50,7 +52,11 @@ public class Metric {
             this.max = result;
         }
         this.sum += result;
-        recordCount.incrementAndGet();
+        if (success){
+            this.successCount.incrementAndGet();
+        }else {
+            this.failureCount.incrementAndGet();
+        }
     }
 
     public void init(){
@@ -58,13 +64,14 @@ public class Metric {
         this.max = null;
         this.avg = 0d;
         this.sum = 0L;
-        recordCount.set(0);
+        this.successCount.set(0);
+        this.failureCount.set(0);
     }
 
     /**
      * 평균값 계산
      */
     public void calcAvg(){
-        this.avg = this.sum / (double)recordCount.get();
+        this.avg = this.sum / (double)(successCount.get() + failureCount.get());
     }
 }

@@ -5,8 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.hc.client5.http.async.methods.SimpleHttpResponse;
 import org.apache.hc.core5.concurrent.FutureCallback;
 
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.function.Consumer;
 
 /**
  * 게시판 생성 API 성능 측정 서비스
@@ -22,22 +24,22 @@ public class BoardCreateIncreasingClientMeasurementService extends TemplateIncre
     }
 
     @Override
-    public Future<SimpleHttpResponse> request(Runnable callback){
-
+    public Future<SimpleHttpResponse> request(Consumer callback) {
         return boardApiService.create(super.targetUrl, sample, new FutureCallback<SimpleHttpResponse>() {
             @Override
             public void completed(SimpleHttpResponse simpleHttpResponse) {
-                callback.run();
+                callback.accept(true);
             }
 
             @Override
             public void failed(Exception e) {
-                callback.run();
+                log.error("request failed : {0}", e);
+                callback.accept(false);
             }
 
             @Override
             public void cancelled() {
-                callback.run();
+                callback.accept(false);
             }
         });
     }
@@ -46,7 +48,7 @@ public class BoardCreateIncreasingClientMeasurementService extends TemplateIncre
     private void warmUp(){
         for (int i = 0; i < 100; i++) {
             try {
-                request(() -> {}).get();
+                this.request(isSucceed -> {}).get();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             } catch (ExecutionException e) {

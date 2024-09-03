@@ -7,6 +7,7 @@ import org.apache.hc.core5.concurrent.FutureCallback;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.function.Consumer;
 
 /**
  * 게시판 조회 API 성능 측정 서비스
@@ -23,21 +24,22 @@ public class BoardReadIncreasingClientMeasurementService extends TemplateIncreas
 
 
     @Override
-    public Future<SimpleHttpResponse> request(Runnable callback){
+    public Future<SimpleHttpResponse> request(Consumer callback){
         return boardApiService.readById(super.targetUrl, 1, new FutureCallback<SimpleHttpResponse>() {
             @Override
             public void completed(SimpleHttpResponse simpleHttpResponse) {
-                callback.run();
+                callback.accept(true);
             }
 
             @Override
             public void failed(Exception e) {
-                callback.run();
+                log.error("request failed : {0}", e);
+                callback.accept(false);
             }
 
             @Override
             public void cancelled() {
-                callback.run();
+                callback.accept(false);
             }
         });
     }
@@ -46,7 +48,7 @@ public class BoardReadIncreasingClientMeasurementService extends TemplateIncreas
     private void warmUp(){
         for (int i = 0; i < 100; i++) {
             try {
-                request(() -> {}).get();
+                request((isSucceed) -> {}).get();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             } catch (ExecutionException e) {
