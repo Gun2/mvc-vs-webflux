@@ -9,20 +9,20 @@ import java.util.concurrent.Future;
 import java.util.function.Consumer;
 
 /**
- * 게시판 조회 API 성능 측정 서비스
+ * 가벼운 API 성능 측정 서비스
  */
 @Slf4j
 public class SimpleIncreasingClientMeasurementService extends TemplateIncreasingClientMeasurementService {
-    private final OtherApiService otherApiService;
+    private final UtilApiService utilApiService;
 
-    public SimpleIncreasingClientMeasurementService(OtherApiService otherApiService, TemplateIncreasingClientMeasurementConfig config) {
+    public SimpleIncreasingClientMeasurementService(UtilApiService utilApiService, TemplateIncreasingClientMeasurementConfig config) {
         super(config);
-        this.otherApiService = otherApiService;
+        this.utilApiService = utilApiService;
     }
 
     @Override
     public Future<SimpleHttpResponse> request(Consumer callback) {
-        return otherApiService.simple(super.targetUrl, "ABC", new FutureCallback<SimpleHttpResponse>() {
+        return utilApiService.simple(super.targetUrl, "ABC", new FutureCallback<SimpleHttpResponse>() {
             @Override
             public void completed(SimpleHttpResponse simpleHttpResponse) {
                 callback.accept(true);

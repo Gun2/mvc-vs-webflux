@@ -1,4 +1,4 @@
-package com.github.gun2.reactorcommon.simple;
+package com.github.gun2.reactorcommon.util;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +13,8 @@ import java.util.Optional;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/simples")
-public class SimpleController {
+@RequestMapping("/utils")
+public class UtilsController {
     @GetMapping("/reverse/{word}")
     public Mono<String> update(
             @PathVariable("word") Optional<String> wordOp

@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.Future;
 
 @Service
-public class OtherApiService {
+public class UtilApiService {
 
     private final CloseableHttpAsyncClient httpClient;
-    public static final String SIMPLE_PATH = "/simples/reverse";
-    public OtherApiService() {
+    public static final String SIMPLE_PATH = "/utils/reverse";
+    public UtilApiService() {
         this.httpClient = HttpAsyncClients.createDefault();
         this.httpClient.start();
     }

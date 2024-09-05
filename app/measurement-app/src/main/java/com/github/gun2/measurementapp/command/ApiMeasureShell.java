@@ -3,7 +3,7 @@ package com.github.gun2.measurementapp.command;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.gun2.measurementapp.component.BoardApiIncreasingClientMeasurementServiceFactory;
-import com.github.gun2.measurementapp.component.OtherApiIncreasingClientMeasurementServiceFactory;
+import com.github.gun2.measurementapp.component.UtilApiIncreasingClientMeasurementServiceFactory;
 import com.github.gun2.measurementapp.service.BoardCreateIncreasingClientMeasurementService;
 import com.github.gun2.measurementapp.service.BoardReadIncreasingClientMeasurementService;
 import com.github.gun2.measurementapp.service.SimpleIncreasingClientMeasurementService;
@@ -19,7 +19,7 @@ import org.springframework.shell.standard.ShellOption;
 @Slf4j
 public class ApiMeasureShell {
     private final BoardApiIncreasingClientMeasurementServiceFactory boardApiIncreasingClientMeasurementServiceFactory;
-    private final OtherApiIncreasingClientMeasurementServiceFactory otherApiIncreasingClientMeasurementServiceFactory;
+    private final UtilApiIncreasingClientMeasurementServiceFactory utilApiIncreasingClientMeasurementServiceFactory;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @ShellMethod(key = "read", prefix = "-", value = "조회 API 성능 측정")
@@ -145,7 +145,7 @@ public class ApiMeasureShell {
                     defaultValue = "simple_api_measure_output.json"
             ) String outputPath
     ) throws InterruptedException, JsonProcessingException {
-        SimpleIncreasingClientMeasurementService simpleApiMeasurementService = otherApiIncreasingClientMeasurementServiceFactory.createSimpleApiMeasurementService(TemplateIncreasingClientMeasurementConfig.builder()
+        SimpleIncreasingClientMeasurementService simpleApiMeasurementService = utilApiIncreasingClientMeasurementServiceFactory.createSimpleApiMeasurementService(TemplateIncreasingClientMeasurementConfig.builder()
                 .targetUrl(targetUrl)
                 .initClient(initClient)
                 .increasingClient(increasingClient)
