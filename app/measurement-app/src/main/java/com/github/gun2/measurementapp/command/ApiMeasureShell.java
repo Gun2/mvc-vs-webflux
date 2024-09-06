@@ -4,10 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.gun2.measurementapp.component.BoardApiIncreasingClientMeasurementServiceFactory;
 import com.github.gun2.measurementapp.component.UtilApiIncreasingClientMeasurementServiceFactory;
-import com.github.gun2.measurementapp.service.BoardCreateIncreasingClientMeasurementService;
-import com.github.gun2.measurementapp.service.BoardReadIncreasingClientMeasurementService;
-import com.github.gun2.measurementapp.service.SimpleIncreasingClientMeasurementService;
-import com.github.gun2.measurementapp.service.TemplateIncreasingClientMeasurementConfig;
+import com.github.gun2.measurementapp.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.shell.standard.ShellComponent;
@@ -156,5 +153,51 @@ public class ApiMeasureShell {
         simpleApiMeasurementService.start();
         simpleApiMeasurementService.await();
         return objectMapper.writeValueAsString(simpleApiMeasurementService.getHistory());
+    }
+
+
+    @ShellMethod(key = "complex", prefix = "-", value = "무거운 기능의 API 성능 측정")
+    public String complexApiMeasure(
+            @ShellOption(
+                    value = {"u", "targetUrl"},
+                    help = "대상 서버 url"
+            ) String targetUrl,
+            @ShellOption(
+                    value = {"t", "initClient"},
+                    help = "초기 요청 클라이언트 수.",
+                    defaultValue = "1"
+            ) Integer initClient,
+            @ShellOption(
+                    value = {"i", "increasingClient"},
+                    help = "매 단계마다 증가될 클라이언트 수",
+                    defaultValue = "1"
+            ) Integer increasingClient,
+            @ShellOption(
+                    value = {"d", "durationMsPerPhase"},
+                    help = "단계의 지속 시간",
+                    defaultValue = "5000"
+            ) Integer durationMsPerPhase,
+            @ShellOption(
+                    value = {"p", "phase"},
+                    help = "총 단계",
+                    defaultValue = "10"
+            ) Integer phase,
+            @ShellOption(
+                    value = {"o", "outputPath"},
+                    help = "측정 결과 저장 경로",
+                    defaultValue = "simple_api_measure_output.json"
+            ) String outputPath
+    ) throws InterruptedException, JsonProcessingException {
+        ComplexIncreasingClientMeasurementService complexApiMeasurementService = utilApiIncreasingClientMeasurementServiceFactory.createComplexApiMeasurementService(TemplateIncreasingClientMeasurementConfig.builder()
+                .targetUrl(targetUrl)
+                .initClient(initClient)
+                .increasingClient(increasingClient)
+                .durationMsPerPhase(durationMsPerPhase)
+                .phase(phase)
+                .outputPath(outputPath)
+                .build());
+        complexApiMeasurementService.start();
+        complexApiMeasurementService.await();
+        return objectMapper.writeValueAsString(complexApiMeasurementService.getHistory());
     }
 }
