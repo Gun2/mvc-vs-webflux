@@ -16,11 +16,23 @@ import java.util.Optional;
 @RequestMapping("/utils")
 public class UtilsController {
     @GetMapping("/reverse/{word}")
-    public Mono<String> update(
+    public Mono<String> reverse(
             @PathVariable("word") Optional<String> wordOp
-    ){
+    ) {
         return Mono.just(
                 wordOp.map(string -> new StringBuffer(string).reverse().toString()).orElse("")
         );
+    }
+
+    @GetMapping("/sleep/{time}")
+    public Mono<Void> sleep(
+            @PathVariable("time") Integer time
+    ) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return Mono.empty();
     }
 }

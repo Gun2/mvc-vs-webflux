@@ -21,4 +21,15 @@ public class UtilsController {
             ){
         return wordOp.map(string -> new StringBuffer(string).reverse().toString()).orElse("");
     }
+
+    @GetMapping("/sleep/{time}")
+    public void sleep(
+            @PathVariable("time")Integer time
+    ){
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
