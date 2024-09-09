@@ -185,7 +185,7 @@ public class ApiMeasureShell {
             @ShellOption(
                     value = {"o", "outputPath"},
                     help = "측정 결과 저장 경로",
-                    defaultValue = "simple_api_measure_output.json"
+                    defaultValue = "complex_api_measure_output.json"
             ) String outputPath
     ) throws InterruptedException, JsonProcessingException {
         ComplexIncreasingClientMeasurementService complexApiMeasurementService = utilApiIncreasingClientMeasurementServiceFactory.createComplexApiMeasurementService(TemplateIncreasingClientMeasurementConfig.builder()
