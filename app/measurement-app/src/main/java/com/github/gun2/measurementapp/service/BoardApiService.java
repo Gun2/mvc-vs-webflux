@@ -1,11 +1,11 @@
 package com.github.gun2.measurementapp.service;
 
 import com.github.gun2.anycommon.board.BoardDto;
+import com.github.gun2.measurementapp.util.MeasurementHttpClientFactory;
 import org.apache.hc.client5.http.async.methods.SimpleHttpRequest;
 import org.apache.hc.client5.http.async.methods.SimpleHttpResponse;
 import org.apache.hc.client5.http.async.methods.SimpleRequestBuilder;
 import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;
-import org.apache.hc.client5.http.impl.async.HttpAsyncClients;
 import org.apache.hc.core5.concurrent.FutureCallback;
 import org.apache.hc.core5.http.ContentType;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class BoardApiService {
     public static final String READ_PATH = "/boards";
 
     public BoardApiService() {
-        this.httpClient = HttpAsyncClients.createDefault();
+        this.httpClient = MeasurementHttpClientFactory.create();
         this.httpClient.start();
     }
 
