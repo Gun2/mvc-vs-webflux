@@ -45,14 +45,14 @@ public class Metric {
     }
 
     public void record(Long result, boolean success){
-        if (min == null || min > result){
-            this.min = result;
-        }
-        if (max == null || max < result) {
-            this.max = result;
-        }
-        this.sum += result;
         if (success){
+            if (min == null || min > result){
+                this.min = result;
+            }
+            if (max == null || max < result) {
+                this.max = result;
+            }
+            this.sum += result;
             this.successCount.incrementAndGet();
         }else {
             this.failureCount.incrementAndGet();
@@ -72,6 +72,6 @@ public class Metric {
      * 평균값 계산
      */
     public void calcAvg(){
-        this.avg = this.sum / (double)(successCount.get() + failureCount.get());
+        this.avg = this.sum / (double)(successCount.get());
     }
 }

@@ -8,19 +8,13 @@ repositories {
     mavenCentral()
 }
 
-
-
 allprojects {
     apply plugin: 'java'
-
-
-
-
 }
 
 subprojects {
     group = 'com.github.gun2'
-    version = '1.0-SNAPSHOT'
+    version = '1.0'
     sourceCompatibility = '21'
 
     apply plugin: 'java'
