@@ -31,13 +31,15 @@
 
 ## 측정 VM
 성능 측정 모듈이 동작할 VM
-- CPU: 1Core
-- Memory: 1GB
+- OS: RockyOS 9
+- CPU: 2 Core 2.20GHz
+- Memory: 2GB
 - 
 ## 대상 VM
 측정 대상 서비스가 동작할 VM
-- CPU: 1Core
-- Memory: 1GB
+- OS: RockyOS 9
+- CPU: 2 Core 2.20GHz
+- Memory: 2GB
 
 ## 관련 프레임워크 및 라이브러리
 - Spring boot 3
@@ -148,3 +150,16 @@ java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http:
 java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://localhost:8084 -t 100 -i 100 -d 5000 -p 10 -o reactor-complex-api-non-block-db-output.json
 ```
 
+
+
+```java
+package reactor.netty.resources;
+
+@FunctionalInterface
+public interface LoopResources extends Disposable {
+    ...
+	int DEFAULT_IO_WORKER_COUNT = Integer.parseInt(System.getProperty(
+			ReactorNetty.IO_WORKER_COUNT,
+			"" + Math.max(Runtime.getRuntime().availableProcessors(), 4)));
+    ...
+```
