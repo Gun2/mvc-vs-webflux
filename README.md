@@ -116,15 +116,15 @@ java -jar app/measurement-app/build/libs/measurement-app-1.0.jar read -u http://
 ```
 ### 쓰기 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http://localhost:8083 -t 100 -i 100 -d 5000 -p 10 -o reactor-create-api--block-db-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http://localhost:8083 -t 100 -i 100 -d 5000 -p 10 -o reactor-create-api-block-db-output.json
 ```
 ### 가벼운 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://localhost:8083 -t 100 -i 100 -d 5000 -p 10 -o reactor-simple-api--block-db-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://localhost:8083 -t 100 -i 100 -d 5000 -p 10 -o reactor-simple-api-block-db-output.json
 ```
 ### 무거운 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://localhost:8083 -t 100 -i 100 -d 5000 -p 10 -o reactor-complex-api--block-db-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://localhost:8083 -t 100 -i 100 -d 5000 -p 10 -o reactor-complex-api-block-db-output.json
 ```
 
 ## 논블록킹 방식(with non blocking DB) API 측정
