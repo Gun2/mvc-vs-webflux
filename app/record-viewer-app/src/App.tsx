@@ -10,7 +10,7 @@ function App() {
         <Link to={"/simple"}>simple api viewer</Link>
         <Link to={"/complex"}>complex api viewer</Link>
       </div>
-      <div>
+      <div style={{width: "100%", height: "80vh"}}>
         <Outlet/>
       </div>
     </div>

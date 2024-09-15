@@ -1,0 +1,92 @@
+[
+  {
+    "min": 4,
+    "max": 2057,
+    "avg": 386.6474464579901,
+    "sum": 469390,
+    "successCount": 1214,
+    "failureCount": 0,
+    "time": 5000
+  },
+  {
+    "min": 4,
+    "max": 4440,
+    "avg": 773.7019810508183,
+    "sum": 898268,
+    "successCount": 1161,
+    "failureCount": 0,
+    "time": 9999
+  },
+  {
+    "min": 34,
+    "max": 4746,
+    "avg": 983.5624538063562,
+    "sum": 1330760,
+    "successCount": 1353,
+    "failureCount": 0,
+    "time": 14999
+  },
+  {
+    "min": 22,
+    "max": 5232,
+    "avg": 1244.4120433017592,
+    "sum": 1839241,
+    "successCount": 1478,
+    "failureCount": 0,
+    "time": 19999
+  },
+  {
+    "min": 5,
+    "max": 7464,
+    "avg": 1515.5505249343832,
+    "sum": 2311447,
+    "successCount": 1525,
+    "failureCount": 0,
+    "time": 24999
+  },
+  {
+    "min": 239,
+    "max": 5779,
+    "avg": 1822.6917585983128,
+    "sum": 2808768,
+    "successCount": 1541,
+    "failureCount": 0,
+    "time": 29999
+  },
+  {
+    "min": 4,
+    "max": 6521,
+    "avg": 2063.3915547024953,
+    "sum": 3225081,
+    "successCount": 1563,
+    "failureCount": 0,
+    "time": 34999
+  },
+  {
+    "min": 498,
+    "max": 5541,
+    "avg": 2155.1448863636365,
+    "sum": 3793055,
+    "successCount": 1760,
+    "failureCount": 0,
+    "time": 39999
+  },
+  {
+    "min": 12,
+    "max": 7271,
+    "avg": 2294.475669764899,
+    "sum": 4196596,
+    "successCount": 1829,
+    "failureCount": 0,
+    "time": 45012
+  },
+  {
+    "min": 10,
+    "max": 6476,
+    "avg": 2180.3406593406594,
+    "sum": 4761864,
+    "successCount": 2184,
+    "failureCount": 0,
+    "time": 49999
+  }
+]
