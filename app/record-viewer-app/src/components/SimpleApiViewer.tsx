@@ -21,7 +21,7 @@ export const SimpleApiViewer = () => {
                         options: {
                             initClient: 100,
                             increasingClient: 100,
-                            durationMsPerPhase: 5000,
+                            durationMsPerPhase: 60000,
                             phase: 10
                         }
                     })}
