@@ -3,7 +3,7 @@ import multiThreadComplexApiOutput from "../records/multi-thread-complex-api-out
 import virtualMultiThreadComplexApiOutput from "../records/virtual-multi-thread-complex-api-output.json";
 import reactorComplexApiBlockDbOutput from "../records/reactor-complex-api-block-db-output.json";
 import reactorComplexApiNonBlockDbOutput from "../records/reactor-complex-api-non-block-db-output.json";
-import {getReadRecordData, RecordChartViewer} from "./RecordChartViewer";
+import {RecordChartViewer} from "./RecordChartViewer";
 import {RecordViewerLayout} from "./Layout/RecordViewerLayout";
 
 export const ComplexApiViewer = () => {
@@ -13,7 +13,7 @@ export const ComplexApiViewer = () => {
             description={"많은 블럭킹을 동반한 복잡한 동작을 수행하는 API의 성능 측정 결과입니다."}
             body={(
                 <RecordChartViewer
-                    data={getReadRecordData({
+                    data={{
                         multiThreadOutput: multiThreadComplexApiOutput,
                         virtualMultiThreadOutput: virtualMultiThreadComplexApiOutput,
                         reactorBlockDbOutput: reactorComplexApiBlockDbOutput,
@@ -24,7 +24,7 @@ export const ComplexApiViewer = () => {
                             durationMsPerPhase: 60000,
                             phase: 10
                         }
-                    })}
+                    }}
                 />
             )}
         />

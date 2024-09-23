@@ -19,7 +19,7 @@ const COLORS = {
 }
 
 export type RecordViewerProps = {
-    data : ChartData[]
+    data : RecordData
 }
 
 export const RecordChartViewer = (
@@ -28,57 +28,74 @@ export const RecordChartViewer = (
     }: RecordViewerProps
 ) => {
     return (
-        <ResponsiveContainer>
-            <ComposedChart
-                width={1600}
-                height={800}
-                data={data}
-            >
-                <XAxis dataKey="name" scale="auto"/>
-                <YAxis/>
-                <Line
-                    type="monotone"
-                    dataKey={"multiThreadSuccessCount"}
-                    stroke={COLORS.MULTI_THREAD_COLOR}
-                    dot={<MultiThreadCustomDot/>}
-                    name={"multiThread"}
-                />
-                <Line
-                    type="monotone"
-                    dataKey={"virtualMultiThreadSuccessCount"}
-                    stroke={COLORS.VIRTUAL_MULTI_THREAD_COLOR}
-                    dot={<VirtualMultiThreadCustomDot/>}
-                    name={"virtualMultiThread"}
-                />
-                <Line
-                    type="monotone"
-                    dataKey={"reactorBlockDbSuccessCount"}
-                    stroke={COLORS.REACTOR_BLOCK_DB_COLOR}
-                    dot={<ReactorBlockDbCustomDot/>}
-                    name={"reactorBlockDb"}
-                />
-                <Line
-                    type="monotone"
-                    dataKey={"reactorNonBlockDbSuccessCount"}
-                    stroke={COLORS.REACTOR_NON_BLOCK_DB_COLOR}
-                    dot={<ReactorNonBlockDbCustomDot/>}
-                    name={"reactorNonBlockDb"}
+        <>
+            <div style={{margin: 5}}>
+                <div>
+                    최초 사용자 수 : {data.options.initClient} users
+                </div>
+                <div>
+                    매 단계 별 증가 되는 사용자 수 : {data.options.increasingClient} users
+                </div>
+                <div>
+                    총 단계 : {data.options.phase}
+                </div>
+                <div>
+                    단계 지속 시간 : {data.options.durationMsPerPhase} ms
+                </div>
+            </div>
+            <ResponsiveContainer>
+                <ComposedChart
+                    width={1600}
+                    height={800}
+                    data={getChartData(data)}
+                >
+                    <XAxis dataKey="name" scale="auto"/>
+                    <YAxis/>
+                    <Line
+                        type="monotone"
+                        dataKey={"multiThreadSuccessCount"}
+                        stroke={COLORS.MULTI_THREAD_COLOR}
+                        dot={<MultiThreadCustomDot/>}
+                        name={"multiThread"}
+                    />
+                    <Line
+                        type="monotone"
+                        dataKey={"virtualMultiThreadSuccessCount"}
+                        stroke={COLORS.VIRTUAL_MULTI_THREAD_COLOR}
+                        dot={<VirtualMultiThreadCustomDot/>}
+                        name={"virtualMultiThread"}
+                    />
+                    <Line
+                        type="monotone"
+                        dataKey={"reactorBlockDbSuccessCount"}
+                        stroke={COLORS.REACTOR_BLOCK_DB_COLOR}
+                        dot={<ReactorBlockDbCustomDot/>}
+                        name={"reactorBlockDb"}
+                    />
+                    <Line
+                        type="monotone"
+                        dataKey={"reactorNonBlockDbSuccessCount"}
+                        stroke={COLORS.REACTOR_NON_BLOCK_DB_COLOR}
+                        dot={<ReactorNonBlockDbCustomDot/>}
+                        name={"reactorNonBlockDb"}
 
-                />
-                <Tooltip content={<CustomTooltip/>}/>
-                <Legend/>
-            </ComposedChart>
-        </ResponsiveContainer>
+                    />
+                    <Tooltip content={<CustomTooltip/>}/>
+                    <Legend/>
+                </ComposedChart>
+            </ResponsiveContainer>
+        </>
     );
 };
 
-
-
-type GetReadRecordDataArgs = {
+type RecordGroup = {
     multiThreadOutput: Record[]
     virtualMultiThreadOutput: Record[]
     reactorBlockDbOutput: Record[]
     reactorNonBlockDbOutput: Record[]
+}
+
+type RecordData = RecordGroup & {
     options: {
         initClient: number
         increasingClient: number
@@ -86,14 +103,14 @@ type GetReadRecordDataArgs = {
         phase: number
     }
 }
-export function getReadRecordData(
+export function getChartData(
     {
         multiThreadOutput,
         virtualMultiThreadOutput,
         reactorBlockDbOutput,
         reactorNonBlockDbOutput,
         options
-    }: GetReadRecordDataArgs
+    }: RecordData
 ): ChartData[]{
     const equalsSize = [multiThreadOutput, virtualMultiThreadOutput, reactorBlockDbOutput, reactorNonBlockDbOutput].every(output => output.length === options.phase);
     if (!equalsSize){

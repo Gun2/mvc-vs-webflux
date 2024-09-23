@@ -3,7 +3,7 @@ import multiThreadCreateApiOutput from "../records/multi-thread-create-api-outpu
 import virtualMultiThreadCreateApiOutput from "../records/virtual-multi-thread-create-api-output.json";
 import reactorCreateApiBlockDbOutput from "../records/reactor-create-api-block-db-output.json";
 import reactorCreateApiNonBlockDbOutput from "../records/reactor-create-api-non-block-db-output.json";
-import {getReadRecordData, RecordChartViewer} from "./RecordChartViewer";
+import {RecordChartViewer} from "./RecordChartViewer";
 import {RecordViewerLayout} from "./Layout/RecordViewerLayout";
 
 export const CreateApiViewer = () => {
@@ -13,7 +13,7 @@ export const CreateApiViewer = () => {
             description={"Db Create 쿼리를 수행하는 API의 성능 측정 결과입니다."}
             body={(
                 <RecordChartViewer
-                    data={getReadRecordData({
+                    data={{
                         multiThreadOutput: multiThreadCreateApiOutput,
                         virtualMultiThreadOutput: virtualMultiThreadCreateApiOutput,
                         reactorBlockDbOutput: reactorCreateApiBlockDbOutput,
@@ -24,7 +24,7 @@ export const CreateApiViewer = () => {
                             durationMsPerPhase: 60000,
                             phase: 10
                         }
-                    })}
+                    }}
                 />
             )}
         />
