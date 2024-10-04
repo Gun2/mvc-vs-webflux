@@ -28,7 +28,6 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    @Transactional
     public Mono<BoardDto> create(BoardDto.BoardRequest dto) {
         return boardRepository.save(
                 Board.builder()
@@ -40,7 +39,6 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    @Transactional
     public Mono<BoardDto> update(BoardDto.BoardRequest dto, Long id) {
         return boardRepository.findById(id).map(board -> {
             board.updateBoard(dto.getTitle(), dto.getContent());
