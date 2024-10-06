@@ -19,9 +19,9 @@ export const ComplexApiViewer = () => {
                         reactorBlockDbOutput: reactorComplexApiBlockDbOutput,
                         reactorNonBlockDbOutput: reactorComplexApiNonBlockDbOutput,
                         options: {
-                            initClient: 100,
-                            increasingClient: 100,
-                            durationMsPerPhase: 60000,
+                            initClient: 50,
+                            increasingClient: 50,
+                            durationMsPerPhase: 10000,
                             phase: 10
                         }
                     }}

@@ -66,19 +66,19 @@ java -jar app/multi-thread-api-app/build/libs/multi-thread-api-app-1.0.jar
 ```
 ### 읽기 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar read -u http://{target_address}:8081 -t 100 -i 100 -d 60000 -p 10 -o multi-thread-read-api-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar read -u http://{target_address}:8081 -t 50 -i 50 -d 10000 -p 10 -o multi-thread-read-api-output.json
 ```
 ### 쓰기 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http://{target_address}:8081 -t 100 -i 100 -d 60000 -p 10 -o multi-thread-create-api-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http://{target_address}:8081 -t 50 -i 50 -d 10000 -p 10 -o multi-thread-create-api-output.json
 ```
 ### 가벼운 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8081 -t 100 -i 100 -d 60000 -p 10 -o multi-thread-simple-api-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8081 -t 50 -i 50 -d 10000 -p 10 -o multi-thread-simple-api-output.json
 ```
 ### 무거운 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://{target_address}:8081 -t 100 -i 100 -d 60000 -p 10 -o multi-thread-complex-api-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://{target_address}:8081 -t 50 -i 50 -d 10000 -p 10 -o multi-thread-complex-api-output.json
 ```
 
 ## 가상 스레드 방식 API 측정
@@ -89,19 +89,19 @@ java -jar app/virtual-multi-thread-api-app/build/libs/virtual-multi-thread-api-a
 ```
 ### 읽기 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar read -u http://{target_address}:8082 -t 100 -i 100 -d 60000 -p 10 -o virtual-multi-thread-read-api-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar read -u http://{target_address}:8082 -t 50 -i 50 -d 10000 -p 10 -o virtual-multi-thread-read-api-output.json
 ```
 ### 쓰기 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http://{target_address}:8082 -t 100 -i 100 -d 60000 -p 10 -o virtual-multi-thread-create-api-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http://{target_address}:8082 -t 50 -i 50 -d 10000 -p 10 -o virtual-multi-thread-create-api-output.json
 ```
 ### 가벼운 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8082 -t 100 -i 100 -d 60000 -p 10 -o virtual-multi-thread-simple-api-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8082 -t 50 -i 50 -d 10000 -p 10 -o virtual-multi-thread-simple-api-output.json
 ```
 ### 무거운 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://{target_address}:8082 -t 100 -i 100 -d 60000 -p 10 -o virtual-multi-thread-complex-api-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://{target_address}:8082 -t 50 -i 50 -d 10000 -p 10 -o virtual-multi-thread-complex-api-output.json
 ```
 
 ## 논블록킹 방식(with blocking DB) API 측정
@@ -112,19 +112,19 @@ java -jar app/reactor-api-block-db-app/build/libs/reactor-api-block-db-app-1.0.j
 ```
 ### 읽기 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar read -u http://{target_address}:8083 -t 100 -i 100 -d 60000 -p 10 -o reactor-read-api-block-db-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar read -u http://{target_address}:8083 -t 50 -i 50 -d 10000 -p 10 -o reactor-read-api-block-db-output.json
 ```
 ### 쓰기 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http://{target_address}:8083 -t 100 -i 100 -d 60000 -p 10 -o reactor-create-api-block-db-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http://{target_address}:8083 -t 50 -i 50 -d 10000 -p 10 -o reactor-create-api-block-db-output.json
 ```
 ### 가벼운 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8083 -t 100 -i 100 -d 60000 -p 10 -o reactor-simple-api-block-db-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8083 -t 50 -i 50 -d 10000 -p 10 -o reactor-simple-api-block-db-output.json
 ```
 ### 무거운 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://{target_address}:8083 -t 100 -i 100 -d 60000 -p 10 -o reactor-complex-api-block-db-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://{target_address}:8083 -t 50 -i 50 -d 10000 -p 10 -o reactor-complex-api-block-db-output.json
 ```
 
 ## 논블록킹 방식(with non blocking DB) API 측정
@@ -135,17 +135,17 @@ java -jar app/reactor-api-non-block-db-app/build/libs/reactor-api-non-block-db-a
 ```
 ### 읽기 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar read -u http://{target_address}:8084 -t 100 -i 100 -d 60000 -p 10 -o reactor-read-api-non-block-db-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar read -u http://{target_address}:8084 -t 50 -i 50 -d 10000 -p 10 -o reactor-read-api-non-block-db-output.json
 ```
 ### 쓰기 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http://{target_address}:8084 -t 100 -i 100 -d 60000 -p 10 -o reactor-create-api-non-block-db-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http://{target_address}:8084 -t 50 -i 50 -d 10000 -p 10 -o reactor-create-api-non-block-db-output.json
 ```
 ### 가벼운 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8084 -t 100 -i 100 -d 60000 -p 10 -o reactor-simple-api-non-block-db-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8084 -t 50 -i 50 -d 10000 -p 10 -o reactor-simple-api-non-block-db-output.json
 ```
 ### 무거운 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://{target_address}:8084 -t 100 -i 100 -d 60000 -p 10 -o reactor-complex-api-non-block-db-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://{target_address}:8084 -t 50 -i 50 -d 10000 -p 10 -o reactor-complex-api-non-block-db-output.json
 ```
