@@ -1,4 +1,4 @@
-CREATE TABLE board
+CREATE TABLE IF NOT EXISTS board
 (
     id         BIGINT NOT NULL AUTO_INCREMENT,
     title      VARCHAR(255),
