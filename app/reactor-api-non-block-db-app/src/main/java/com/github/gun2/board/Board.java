@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Builder
@@ -18,7 +19,7 @@ public class Board {
 
     private String content;
 
-    private Instant createdAt;
+    private LocalDateTime createdAt;
 
     public void updateContent(String content){
         this.content = content;

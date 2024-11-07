@@ -10,6 +10,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Service
 @Slf4j
@@ -33,7 +34,7 @@ public class BoardServiceImpl implements BoardService {
                 Board.builder()
                         .title(dto.getTitle())
                         .content(dto.getContent())
-                        .createdAt(Instant.now())
+                        .createdAt(LocalDateTime.now())
                         .build()
         ).map(DtoToDataModelMapper::toDto);
     }
