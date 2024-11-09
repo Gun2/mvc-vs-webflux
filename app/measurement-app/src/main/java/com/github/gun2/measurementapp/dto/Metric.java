@@ -1,11 +1,10 @@
 package com.github.gun2.measurementapp.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Getter
 @Setter
@@ -31,6 +30,8 @@ public class Metric {
 
     private AtomicLong successCount = new AtomicLong();
     private AtomicLong failureCount = new AtomicLong();
+    @Getter(AccessLevel.NONE)
+    private final Lock recordLock = new ReentrantLock();
 
     private long time;
 
@@ -46,17 +47,23 @@ public class Metric {
 
     public void record(Long result, boolean success){
         if (success){
-            if (min == null || min > result){
-                this.min = result;
+            recordLock.lock();
+            try {
+                if (this.min == null || this.min > result){
+                    this.min = result;
+                }
+                if (max == null || max < result) {
+                    this.max = result;
+                }
+                this.sum += result;
+            }finally {
+                recordLock.unlock();
             }
-            if (max == null || max < result) {
-                this.max = result;
-            }
-            this.sum += result;
             this.successCount.incrementAndGet();
         }else {
             this.failureCount.incrementAndGet();
         }
+
     }
 
     public void init(){
