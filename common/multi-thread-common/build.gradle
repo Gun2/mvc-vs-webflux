@@ -8,6 +8,7 @@ dependencies {
 
     api project(":common:board-dto-model")
     api project(":common:board-jpa-common")
+    api project(":common:heavy-common")
 }
 
 tasks.named('test') {

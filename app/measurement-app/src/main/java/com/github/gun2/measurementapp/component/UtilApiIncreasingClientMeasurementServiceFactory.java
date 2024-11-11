@@ -1,9 +1,6 @@
 package com.github.gun2.measurementapp.component;
 
-import com.github.gun2.measurementapp.service.BlockIncreasingClientMeasurementService;
-import com.github.gun2.measurementapp.service.SimpleIncreasingClientMeasurementService;
-import com.github.gun2.measurementapp.service.TemplateIncreasingClientMeasurementConfig;
-import com.github.gun2.measurementapp.service.UtilApiService;
+import com.github.gun2.measurementapp.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -31,5 +28,14 @@ public class UtilApiIncreasingClientMeasurementServiceFactory {
      */
     public BlockIncreasingClientMeasurementService createBlockApiMeasurementService(TemplateIncreasingClientMeasurementConfig config){
         return new BlockIncreasingClientMeasurementService(this.utilApiService, config);
+    }
+
+    /**
+     * 무거운 기능의 API 성능 측정 서비스 생성
+     * @param config
+     * @return
+     */
+    public HeavyIncreasingClientMeasurementService createHeavyApiMeasurementService(TemplateIncreasingClientMeasurementConfig config){
+        return new HeavyIncreasingClientMeasurementService(this.utilApiService, config);
     }
 }

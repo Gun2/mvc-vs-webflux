@@ -18,6 +18,7 @@ public class UtilApiService {
     private final CloseableHttpAsyncClient httpClient;
     public static final String SIMPLE_PATH = "/utils/reverse";
     public static final String BLOCK_PATH = "/utils/sleep";
+    public static final String HEAVY_PATH = "/utils/prime-number";
     public UtilApiService() {
         this.httpClient = MeasurementHttpClientFactory.create();
         this.httpClient.start();
@@ -47,6 +48,19 @@ public class UtilApiService {
      */
     public Future<SimpleHttpResponse> block(String targetUrl, Integer time, FutureCallback<SimpleHttpResponse> callback){
         SimpleHttpRequest request = SimpleRequestBuilder.get(targetUrl + BLOCK_PATH + "/" + time).build();
+
+        return this.httpClient.execute(request, callback);
+    }
+
+    /**
+     * prime number 개수 구하기 api
+     * @param targetUrl API 서버 URL
+     * @param limit 2~limit 사이의 소수 개수를 구함
+     * @param callback
+     * @return
+     */
+    public Future<SimpleHttpResponse> heavy(String targetUrl, Integer limit, FutureCallback<SimpleHttpResponse> callback){
+        SimpleHttpRequest request = SimpleRequestBuilder.get(targetUrl + HEAVY_PATH + "/" + limit).build();
 
         return this.httpClient.execute(request, callback);
     }

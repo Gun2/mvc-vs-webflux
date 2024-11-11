@@ -86,6 +86,10 @@ java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http:
 ```shell
 java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8081 -t 50 -i 50 -d 10000 -p 10 -o multi-thread-simple-api-output.json
 ```
+### 무거운 API 측정
+```shell
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar heavy -u http://{target_address}:8081 -t 50 -i 50 -d 10000 -p 10 -o multi-thread-heavy-api-output.json
+```
 ### 블로킹이 포함된 API 측정
 ```shell
 java -jar app/measurement-app/build/libs/measurement-app-1.0.jar block -u http://{target_address}:8081 -t 50 -i 50 -d 10000 -p 10 -o multi-thread-block-api-output.json
@@ -108,6 +112,10 @@ java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http:
 ### 가벼운 API 측정
 ```shell
 java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8082 -t 50 -i 50 -d 10000 -p 10 -o virtual-multi-thread-simple-api-output.json
+```
+### 무거운 API 측정
+```shell
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar heavy -u http://{target_address}:8082 -t 50 -i 50 -d 10000 -p 10 -o virtual-multi-thread-heavy-api-output.json
 ```
 ### 블로킹이 포함된 API 측정
 ```shell
@@ -132,6 +140,10 @@ java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http:
 ```shell
 java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8083 -t 50 -i 50 -d 10000 -p 10 -o reactor-simple-api-block-db-output.json
 ```
+### 무거운 API 측정
+```shell
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar heavy -u http://{target_address}:8083 -t 50 -i 50 -d 10000 -p 10 -o reactor-heavy-api-block-db-output.json
+```
 ### 블로킹이 포함된 API 측정
 ```shell
 java -jar app/measurement-app/build/libs/measurement-app-1.0.jar block -u http://{target_address}:8083 -t 50 -i 50 -d 10000 -p 10 -o reactor-block-api-block-db-output.json
@@ -154,6 +166,10 @@ java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http:
 ### 가벼운 API 측정
 ```shell
 java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8084 -t 50 -i 50 -d 10000 -p 10 -o reactor-simple-api-non-block-db-output.json
+```
+### 가벼운 API 측정
+```shell
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar heavy -u http://{target_address}:8084 -t 50 -i 50 -d 10000 -p 10 -o reactor-heavy-api-non-block-db-output.json
 ```
 ### 블로킹이 포함된 API 측정
 ```shell

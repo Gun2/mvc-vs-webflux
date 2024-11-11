@@ -9,3 +9,5 @@ include(":common:board-dto-model")
 include(":common:board-jpa-common")
 include(":common:multi-thread-common")
 include(":common:reactor-common")
+include(":common:heavy-common")
+

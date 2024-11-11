@@ -1,5 +1,6 @@
 package com.github.gun2.multithreadcommon.util;
 
+import com.github.gun2.heavy.util.PrimeNumberUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,5 +32,12 @@ public class UtilsController {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @GetMapping("/prime-number/{limit}")
+    public Integer searchTotalPrimeNumber(
+            @PathVariable("limit")Integer limit
+    ){
+        return PrimeNumberUtil.getTotalPrimeNumber(limit);
     }
 }

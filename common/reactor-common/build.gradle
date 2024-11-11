@@ -9,6 +9,7 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     api project(":common:board-dto-model")
+    api project(":common:heavy-common")
 
 }
 
