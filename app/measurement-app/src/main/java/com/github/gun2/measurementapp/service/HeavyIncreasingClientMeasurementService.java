@@ -13,15 +13,17 @@ import java.util.function.Consumer;
 @Slf4j
 public class HeavyIncreasingClientMeasurementService extends TemplateIncreasingClientMeasurementService {
     private final UtilApiService utilApiService;
+    private final int value;
 
-    public HeavyIncreasingClientMeasurementService(UtilApiService utilApiService, TemplateIncreasingClientMeasurementConfig config) {
+    public HeavyIncreasingClientMeasurementService(UtilApiService utilApiService, TemplateIncreasingClientMeasurementConfig config, int value) {
         super(config);
         this.utilApiService = utilApiService;
+        this.value = value;
     }
 
     @Override
     public Future<SimpleHttpResponse> request(Consumer callback) {
-        return utilApiService.heavy(super.targetUrl, 1000000, new FutureCallback<SimpleHttpResponse>() {
+        return utilApiService.heavy(super.targetUrl, this.value, new FutureCallback<SimpleHttpResponse>() {
             @Override
             public void completed(SimpleHttpResponse simpleHttpResponse) {
                 callback.accept(true);

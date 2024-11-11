@@ -231,7 +231,12 @@ public class ApiMeasureShell {
                     value = {"o", "outputPath"},
                     help = "측정 결과 저장 경로",
                     defaultValue = "heavy_api_measure_output.json"
-            ) String outputPath
+            ) String outputPath,
+            @ShellOption(
+                    value = {"v", "value"},
+                    help = "heavy 값",
+                    defaultValue = "1000000"
+            ) int value
     ) throws InterruptedException, JsonProcessingException {
         HeavyIncreasingClientMeasurementService heavyApiMeasurementService = utilApiIncreasingClientMeasurementServiceFactory.createHeavyApiMeasurementService(TemplateIncreasingClientMeasurementConfig.builder()
                 .targetUrl(targetUrl)
@@ -240,7 +245,7 @@ public class ApiMeasureShell {
                 .durationMsPerPhase(durationMsPerPhase)
                 .phase(phase)
                 .outputPath(outputPath)
-                .build());
+                .build(), value);
         heavyApiMeasurementService.start();
         heavyApiMeasurementService.await();
         return objectMapper.writeValueAsString(heavyApiMeasurementService.getHistory());

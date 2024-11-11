@@ -35,7 +35,7 @@ public class UtilApiIncreasingClientMeasurementServiceFactory {
      * @param config
      * @return
      */
-    public HeavyIncreasingClientMeasurementService createHeavyApiMeasurementService(TemplateIncreasingClientMeasurementConfig config){
-        return new HeavyIncreasingClientMeasurementService(this.utilApiService, config);
+    public HeavyIncreasingClientMeasurementService createHeavyApiMeasurementService(TemplateIncreasingClientMeasurementConfig config, int value){
+        return new HeavyIncreasingClientMeasurementService(this.utilApiService, config, value);
     }
 }
