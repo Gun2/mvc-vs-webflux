@@ -7,7 +7,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {ReadApiViewer} from "./components/ReadApiViewer";
 import {CreateApiViewer} from "./components/CreateApiViewer";
 import {SimpleApiViewer} from "./components/SimpleApiViewer";
-import {ComplexApiViewer} from "./components/ComplexApiViewer";
+import {BlockApiViewer} from "./components/BlockApiViewer";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -33,8 +33,8 @@ const router = createBrowserRouter([
                 element: <SimpleApiViewer/>
             },
             {
-                path: "/complex",
-                element: <ComplexApiViewer/>
+                path: "/block",
+                element: <BlockApiViewer/>
             },
 
         ],

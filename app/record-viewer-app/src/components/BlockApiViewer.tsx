@@ -1,16 +1,16 @@
 import React from 'react';
-import multiThreadComplexApiOutput from "../records/multi-thread-complex-api-output.json";
-import virtualMultiThreadComplexApiOutput from "../records/virtual-multi-thread-complex-api-output.json";
-import reactorComplexApiBlockDbOutput from "../records/reactor-complex-api-block-db-output.json";
-import reactorComplexApiNonBlockDbOutput from "../records/reactor-complex-api-non-block-db-output.json";
+import multiThreadComplexApiOutput from "../records/multi-thread-block-api-output.json";
+import virtualMultiThreadComplexApiOutput from "../records/virtual-multi-thread-block-api-output.json";
+import reactorComplexApiBlockDbOutput from "../records/reactor-block-api-block-db-output.json";
+import reactorComplexApiNonBlockDbOutput from "../records/reactor-block-api-non-block-db-output.json";
 import {RecordChartViewer} from "./RecordChartViewer";
 import {RecordViewerLayout} from "./Layout/RecordViewerLayout";
 
-export const ComplexApiViewer = () => {
+export const BlockApiViewer = () => {
     return (
         <RecordViewerLayout
-            title={"복잡한 기능의 API 성능 측정 결과"}
-            description={"많은 블럭킹을 동반한 복잡한 동작을 수행하는 API의 성능 측정 결과입니다."}
+            title={"블로킹 작업이 포함된 API 성능 측정 결과"}
+            description={"많은 블럭킹을 동반한 동작을 수행하는 API의 성능 측정 결과입니다."}
             body={(
                 <RecordChartViewer
                     data={{

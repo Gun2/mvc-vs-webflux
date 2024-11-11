@@ -8,7 +8,7 @@ function App() {
         <Link to={"/read"}>read api viewer</Link>
         <Link to={"/create"}>create api viewer</Link>
         <Link to={"/simple"}>simple api viewer</Link>
-        <Link to={"/complex"}>complex api viewer</Link>
+        <Link to={"/block"}>block api viewer</Link>
       </div>
       <div style={{width: "100%", height: "80vh"}}>
         <Outlet/>
