@@ -17,7 +17,7 @@ public class UtilApiService {
 
     private final CloseableHttpAsyncClient httpClient;
     public static final String SIMPLE_PATH = "/utils/reverse";
-    public static final String COMPLEX_PATH = "/utils/sleep";
+    public static final String BLOCK_PATH = "/utils/sleep";
     public UtilApiService() {
         this.httpClient = MeasurementHttpClientFactory.create();
         this.httpClient.start();
@@ -45,8 +45,8 @@ public class UtilApiService {
      * @param callback
      * @return
      */
-    public Future<SimpleHttpResponse> complex(String targetUrl, Integer time, FutureCallback<SimpleHttpResponse> callback){
-        SimpleHttpRequest request = SimpleRequestBuilder.get(targetUrl + COMPLEX_PATH + "/" + time).build();
+    public Future<SimpleHttpResponse> block(String targetUrl, Integer time, FutureCallback<SimpleHttpResponse> callback){
+        SimpleHttpRequest request = SimpleRequestBuilder.get(targetUrl + BLOCK_PATH + "/" + time).build();
 
         return this.httpClient.execute(request, callback);
     }

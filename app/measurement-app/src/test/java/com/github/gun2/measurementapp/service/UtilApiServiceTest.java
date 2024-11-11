@@ -25,7 +25,7 @@ class UtilApiServiceTest {
 
         /** when */
         Stream.generate(() -> new Thread(() -> {
-            utilApiService.complex("http://localhost:8081", 3000, new FutureCallback<SimpleHttpResponse>() {
+            utilApiService.block("http://localhost:8081", 3000, new FutureCallback<SimpleHttpResponse>() {
                 @Override
                 public void completed(SimpleHttpResponse simpleHttpResponse) {
                     log.info("completed");

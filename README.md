@@ -24,6 +24,7 @@
 - DB 쓰기 API
 - 가벼운 기능의 API
 - 무거운 기능의 API
+- 블로킹이 포함된 API
 > **측정 정보 :** 최소 요청 시간, 최대 요청 시간, 평균 요청 시간, 성공 요청 횟수, 실패 요청 횟수
 
 
@@ -85,9 +86,9 @@ java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http:
 ```shell
 java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8081 -t 50 -i 50 -d 10000 -p 10 -o multi-thread-simple-api-output.json
 ```
-### 무거운 API 측정
+### 블로킹이 포함된 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://{target_address}:8081 -t 50 -i 50 -d 10000 -p 10 -o multi-thread-complex-api-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar block -u http://{target_address}:8081 -t 50 -i 50 -d 10000 -p 10 -o multi-thread-block-api-output.json
 ```
 
 ## 가상 스레드 방식 API 측정
@@ -108,9 +109,9 @@ java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http:
 ```shell
 java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8082 -t 50 -i 50 -d 10000 -p 10 -o virtual-multi-thread-simple-api-output.json
 ```
-### 무거운 API 측정
+### 블로킹이 포함된 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://{target_address}:8082 -t 50 -i 50 -d 10000 -p 10 -o virtual-multi-thread-complex-api-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar block -u http://{target_address}:8082 -t 50 -i 50 -d 10000 -p 10 -o virtual-multi-thread-block-api-output.json
 ```
 
 ## 논블록킹 방식(with blocking DB) API 측정
@@ -131,9 +132,9 @@ java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http:
 ```shell
 java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8083 -t 50 -i 50 -d 10000 -p 10 -o reactor-simple-api-block-db-output.json
 ```
-### 무거운 API 측정
+### 블로킹이 포함된 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://{target_address}:8083 -t 50 -i 50 -d 10000 -p 10 -o reactor-complex-api-block-db-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar block -u http://{target_address}:8083 -t 50 -i 50 -d 10000 -p 10 -o reactor-block-api-block-db-output.json
 ```
 
 ## 논블록킹 방식(with non blocking DB) API 측정
@@ -154,9 +155,9 @@ java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http:
 ```shell
 java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8084 -t 50 -i 50 -d 10000 -p 10 -o reactor-simple-api-non-block-db-output.json
 ```
-### 무거운 API 측정
+### 블로킹이 포함된 API 측정
 ```shell
-java -jar app/measurement-app/build/libs/measurement-app-1.0.jar complex -u http://{target_address}:8084 -t 50 -i 50 -d 10000 -p 10 -o reactor-complex-api-non-block-db-output.json
+java -jar app/measurement-app/build/libs/measurement-app-1.0.jar block -u http://{target_address}:8084 -t 50 -i 50 -d 10000 -p 10 -o reactor-block-api-non-block-db-output.json
 ```
 
 # 측정 결과
@@ -201,8 +202,8 @@ DB 쓰기가 포함된 API의 성능 측정 결과 입니다.
 ![simple_api_result.png](result/simple_api_result.png)
 > `논블록킹 방식의 API`가 가장 높은 성능을 나타내었으며 그 다음으로 `가상스레드 방식`이 높은 성능을 나타내었습니다.
 
-## 무거운 기능의 API
-많은 블럭킹을 동반한 복잡한 동작을 수행하는 API의 성능 측정 결과 입니다. 
+## 블로킹이 포함된 API
+스레드 작업에 많은 블로킹이 동반되는 API의 성능 측정 결과 입니다. 
 <br/>※ API는 1초동안 스레드를 sleep하는 로직을 공통적으로 수행합니다.
 <br/>※ 설정은 모두 기본값을 사용하였습니다. (web flux의 경우 최소 수치인 4개의 스레드 워커가 할당되었습니다.)
 
@@ -212,5 +213,5 @@ DB 쓰기가 포함된 API의 성능 측정 결과 입니다.
 - 총 단계 : 10
 - 단계 지속 시간 : 10s
 -----------
-![complex_api_result.png](result/complex_api_result.png)
+![block_api_result.png](result/block_api_result.png)
 > 가상스레드 방식이 가장 많은 처리량을 나타내었으며, 각 `측정 비교 대상`들의 최대 허용치에 따라 순위가 결정된 것으로 나타났습니다.

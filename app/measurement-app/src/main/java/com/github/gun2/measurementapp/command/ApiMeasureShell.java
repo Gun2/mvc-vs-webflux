@@ -156,8 +156,8 @@ public class ApiMeasureShell {
     }
 
 
-    @ShellMethod(key = "complex", prefix = "-", value = "무거운 기능의 API 성능 측정")
-    public String complexApiMeasure(
+    @ShellMethod(key = "block", prefix = "-", value = "무거운 기능의 API 성능 측정")
+    public String blockApiMeasure(
             @ShellOption(
                     value = {"u", "targetUrl"},
                     help = "대상 서버 url"
@@ -185,10 +185,10 @@ public class ApiMeasureShell {
             @ShellOption(
                     value = {"o", "outputPath"},
                     help = "측정 결과 저장 경로",
-                    defaultValue = "complex_api_measure_output.json"
+                    defaultValue = "block_api_measure_output.json"
             ) String outputPath
     ) throws InterruptedException, JsonProcessingException {
-        ComplexIncreasingClientMeasurementService complexApiMeasurementService = utilApiIncreasingClientMeasurementServiceFactory.createComplexApiMeasurementService(TemplateIncreasingClientMeasurementConfig.builder()
+        BlockIncreasingClientMeasurementService blockApiMeasurementService = utilApiIncreasingClientMeasurementServiceFactory.createBlockApiMeasurementService(TemplateIncreasingClientMeasurementConfig.builder()
                 .targetUrl(targetUrl)
                 .initClient(initClient)
                 .increasingClient(increasingClient)
@@ -196,8 +196,8 @@ public class ApiMeasureShell {
                 .phase(phase)
                 .outputPath(outputPath)
                 .build());
-        complexApiMeasurementService.start();
-        complexApiMeasurementService.await();
-        return objectMapper.writeValueAsString(complexApiMeasurementService.getHistory());
+        blockApiMeasurementService.start();
+        blockApiMeasurementService.await();
+        return objectMapper.writeValueAsString(blockApiMeasurementService.getHistory());
     }
 }

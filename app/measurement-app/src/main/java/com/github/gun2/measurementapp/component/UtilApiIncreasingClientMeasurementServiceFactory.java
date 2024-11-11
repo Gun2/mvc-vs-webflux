@@ -1,6 +1,6 @@
 package com.github.gun2.measurementapp.component;
 
-import com.github.gun2.measurementapp.service.ComplexIncreasingClientMeasurementService;
+import com.github.gun2.measurementapp.service.BlockIncreasingClientMeasurementService;
 import com.github.gun2.measurementapp.service.SimpleIncreasingClientMeasurementService;
 import com.github.gun2.measurementapp.service.TemplateIncreasingClientMeasurementConfig;
 import com.github.gun2.measurementapp.service.UtilApiService;
@@ -26,10 +26,10 @@ public class UtilApiIncreasingClientMeasurementServiceFactory {
     }
 
     /**
-     * 무거운 기능의 API 성능 측정 서비스 생성
+     * Block이 포함된 API 성능 측정 서비스 생성
      * @return
      */
-    public ComplexIncreasingClientMeasurementService createComplexApiMeasurementService(TemplateIncreasingClientMeasurementConfig config){
-        return new ComplexIncreasingClientMeasurementService(this.utilApiService, config);
+    public BlockIncreasingClientMeasurementService createBlockApiMeasurementService(TemplateIncreasingClientMeasurementConfig config){
+        return new BlockIncreasingClientMeasurementService(this.utilApiService, config);
     }
 }
