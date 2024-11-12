@@ -167,7 +167,7 @@ java -jar app/measurement-app/build/libs/measurement-app-1.0.jar create -u http:
 ```shell
 java -jar app/measurement-app/build/libs/measurement-app-1.0.jar simple -u http://{target_address}:8084 -t 50 -i 50 -d 10000 -p 10 -o reactor-simple-api-non-block-db-output.json
 ```
-### 가벼운 API 측정
+### 무거운 API 측정
 ```shell
 java -jar app/measurement-app/build/libs/measurement-app-1.0.jar heavy -u http://{target_address}:8084 -t 50 -i 50 -d 10000 -p 10 -o reactor-heavy-api-non-block-db-output.json
 ```
@@ -217,6 +217,24 @@ DB 쓰기가 포함된 API의 성능 측정 결과 입니다.
 -----------
 ![simple_api_result.png](result/simple_api_result.png)
 > `논블록킹 방식의 API`가 가장 높은 성능을 나타내었으며 그 다음으로 `가상스레드 방식`이 높은 성능을 나타내었습니다.
+
+## 무거운 기능의 API
+많은 CPU 처리량을 요구하는 API의 성능 측정 결과입니다.
+<br/>※ 해당 측정에서 소인수 분해 로직을 통해 많은 CPU 처리를 요구하도록 하였습니다.
+
+-----------
+- 최초 사용자 수 : 50 users
+- 매 단계 별 증가 되는 사용자 수 : 50 users
+- 총 단계 : 10
+- 단계 지속 시간 : 10s
+-----------
+![heavy_api_result.png](result%2Fheavy_api_result.png)
+> 모든 대상이 비슷한 성능을 보여주었지만 후반부로 갈 수록 논블럭킹과 가상스레드 방식에 약간의 성능저하가 발생하였고, 멀티스레드 방식은 성능이 유지되었습니다.
+> ```
+> 해당 API에서는 멀티스레드 방식의 경우 부하를 유발하는 실질적인 로직(소수 개수 구하기)에서 I/O 또는 블로킹 작업이 없었고 
+> 작업의 단위가 끊어지지 않았기에 컨텍스트 스위칭 발생이 최소화 되어 성능이 유지된 것으로 추측됩니다.
+> ```
+
 
 ## 블로킹이 포함된 API
 스레드 작업에 많은 블로킹이 동반되는 API의 성능 측정 결과 입니다. 
