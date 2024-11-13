@@ -10,6 +10,7 @@ function App() {
         <Link to={"/simple"}>simple api viewer</Link>
         <Link to={"/heavy"}>heavy api viewer</Link>
         <Link to={"/block"}>block api viewer</Link>
+        <Link to={"/r2dbc-vs-jdbc"}>r2dbc vs jdbc api viewer</Link>
       </div>
       <div style={{width: "100%", height: "80vh"}}>
         <Outlet/>

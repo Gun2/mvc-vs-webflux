@@ -9,6 +9,7 @@ import {CreateApiViewer} from "./components/CreateApiViewer";
 import {SimpleApiViewer} from "./components/SimpleApiViewer";
 import {BlockApiViewer} from "./components/BlockApiViewer";
 import {HeavyApiViewer} from "./components/HeavyApiViewer";
+import {R2dbcVsJdbcApiViewerCollector} from "./components/R2dbcVsJdbc/R2dbcVsJdbcApiViewerCollector";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -41,7 +42,10 @@ const router = createBrowserRouter([
                 path: "/block",
                 element: <BlockApiViewer/>
             },
-
+            {
+                path: "/r2dbc-vs-jdbc",
+                element: <R2dbcVsJdbcApiViewerCollector/>
+            },
         ],
         element: <App/>
     }
