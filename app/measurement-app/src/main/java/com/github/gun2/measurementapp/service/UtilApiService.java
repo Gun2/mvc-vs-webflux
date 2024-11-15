@@ -54,14 +54,15 @@ public class UtilApiService {
 
     /**
      * prime number 개수 구하기 api
+     *
      * @param targetUrl API 서버 URL
-     * @param limit 2~limit 사이의 소수 개수를 구함
+     * @param limit     2~limit 사이의 소수 개수를 구함
+     * @param threadSwitch
      * @param callback
      * @return
      */
-    public Future<SimpleHttpResponse> heavy(String targetUrl, Integer limit, FutureCallback<SimpleHttpResponse> callback){
-        SimpleHttpRequest request = SimpleRequestBuilder.get(targetUrl + HEAVY_PATH + "/" + limit).build();
-
+    public Future<SimpleHttpResponse> heavy(String targetUrl, Integer limit, boolean threadSwitch, FutureCallback<SimpleHttpResponse> callback){
+        SimpleHttpRequest request = SimpleRequestBuilder.get(targetUrl + HEAVY_PATH + "/" + limit + (threadSwitch ? "/with-context-switch" : "")).build();
         return this.httpClient.execute(request, callback);
     }
 }

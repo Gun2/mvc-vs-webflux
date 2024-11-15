@@ -14,16 +14,18 @@ import java.util.function.Consumer;
 public class HeavyIncreasingClientMeasurementService extends TemplateIncreasingClientMeasurementService {
     private final UtilApiService utilApiService;
     private final int value;
+    private final boolean threadSwitch;
 
-    public HeavyIncreasingClientMeasurementService(UtilApiService utilApiService, TemplateIncreasingClientMeasurementConfig config, int value) {
+    public HeavyIncreasingClientMeasurementService(UtilApiService utilApiService, TemplateIncreasingClientMeasurementConfig config, int value, boolean threadSwitch) {
         super(config);
         this.utilApiService = utilApiService;
         this.value = value;
+        this.threadSwitch = threadSwitch;
     }
 
     @Override
     public Future<SimpleHttpResponse> request(Consumer callback) {
-        return utilApiService.heavy(super.targetUrl, this.value, new FutureCallback<SimpleHttpResponse>() {
+        return utilApiService.heavy(super.targetUrl, this.value, this.threadSwitch, new FutureCallback<SimpleHttpResponse>() {
             @Override
             public void completed(SimpleHttpResponse simpleHttpResponse) {
                 callback.accept(true);

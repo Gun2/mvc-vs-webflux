@@ -236,7 +236,12 @@ public class ApiMeasureShell {
                     value = {"v", "value"},
                     help = "heavy 값",
                     defaultValue = "1000000"
-            ) int value
+            ) int value,
+            @ShellOption(
+                    value = {"ts", "thread-switch"},
+                    help = "소수를 찾을 경우 thread switch",
+                    defaultValue = "false"
+            ) boolean threadSwitch
     ) throws InterruptedException, JsonProcessingException {
         HeavyIncreasingClientMeasurementService heavyApiMeasurementService = utilApiIncreasingClientMeasurementServiceFactory.createHeavyApiMeasurementService(TemplateIncreasingClientMeasurementConfig.builder()
                 .targetUrl(targetUrl)
@@ -245,10 +250,9 @@ public class ApiMeasureShell {
                 .durationMsPerPhase(durationMsPerPhase)
                 .phase(phase)
                 .outputPath(outputPath)
-                .build(), value);
+                .build(), value, threadSwitch);
         heavyApiMeasurementService.start();
         heavyApiMeasurementService.await();
         return objectMapper.writeValueAsString(heavyApiMeasurementService.getHistory());
     }
-
 }

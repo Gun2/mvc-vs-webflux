@@ -32,10 +32,12 @@ public class UtilApiIncreasingClientMeasurementServiceFactory {
 
     /**
      * 무거운 기능의 API 성능 측정 서비스 생성
+     *
      * @param config
+     * @param threadSwitch
      * @return
      */
-    public HeavyIncreasingClientMeasurementService createHeavyApiMeasurementService(TemplateIncreasingClientMeasurementConfig config, int value){
-        return new HeavyIncreasingClientMeasurementService(this.utilApiService, config, value);
+    public HeavyIncreasingClientMeasurementService createHeavyApiMeasurementService(TemplateIncreasingClientMeasurementConfig config, int value, boolean threadSwitch){
+        return new HeavyIncreasingClientMeasurementService(this.utilApiService, config, value, threadSwitch);
     }
 }
