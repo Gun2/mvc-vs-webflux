@@ -10,6 +10,7 @@ import {SimpleApiViewer} from "./components/SimpleApiViewer";
 import {BlockApiViewer} from "./components/BlockApiViewer";
 import {HeavyApiViewer} from "./components/HeavyApiViewer";
 import {R2dbcVsJdbcApiViewerCollector} from "./components/R2dbcVsJdbc/R2dbcVsJdbcApiViewerCollector";
+import {TooManyContextSwitchedApiViewer} from "./components/TooManyContextSwitches/TooManyContextSwitchesApiViewer";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
             {
                 path: "/r2dbc-vs-jdbc",
                 element: <R2dbcVsJdbcApiViewerCollector/>
+            },
+            {
+                path: "/too-many-context-switches",
+                element: <TooManyContextSwitchedApiViewer/>
             },
         ],
         element: <App/>
