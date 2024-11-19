@@ -11,6 +11,7 @@ function App() {
         <Link to={"/heavy"}>heavy api viewer</Link>
         <Link to={"/block"}>block api viewer</Link>
         <Link to={"/r2dbc-vs-jdbc"}>r2dbc vs jdbc api viewer</Link>
+        <Link to={"/too-many-context-switches"}>too many context switches</Link>
       </div>
       <div style={{width: "100%", height: "80vh"}}>
         <Outlet/>

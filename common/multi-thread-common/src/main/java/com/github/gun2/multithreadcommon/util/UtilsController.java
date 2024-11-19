@@ -40,4 +40,11 @@ public class UtilsController {
     ){
         return PrimeNumberUtil.getTotalPrimeNumber(limit);
     }
+
+    @GetMapping("/prime-number/{limit}/with-context-switch")
+    public Integer searchTotalPrimeNumberWithContextSwitch(
+            @PathVariable("limit")Integer limit
+    ){
+        return PrimeNumberUtil.getTotalPrimeNumberWithContextSwitch(limit);
+    }
 }

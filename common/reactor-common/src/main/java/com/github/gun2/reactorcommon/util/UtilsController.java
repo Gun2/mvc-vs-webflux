@@ -43,4 +43,11 @@ public class UtilsController {
     ) {
         return Mono.just(PrimeNumberUtil.getTotalPrimeNumber(cycle));
     }
+
+    @GetMapping("/prime-number/{limit}/with-context-switch")
+    public Mono<Integer> searchTotalPrimeNumberWithContextSwitch(
+            @PathVariable("limit") Integer cycle
+    ) {
+        return Mono.just(PrimeNumberUtil.getTotalPrimeNumberWithContextSwitch(cycle));
+    }
 }
